@@ -17,24 +17,26 @@ export function goToUrl(url) {
 /**
  * click on element
  * @param {string} selector to be clicked
+ * @return {text} failure reason
  */
 export function clickSelector(selector) {
-    const submitSelector = selector;
-    if (checkIfElementExists(submitSelector)) {
-        $(submitSelector).click();
+    if (checkIfElementExists(selector)) {
+        return 'selector not exist';
     }
+    return $(selector).click();
 }
 
 /**
  * set value inside element
  * @param {string} selector to be filled
  * @param {string} value to be inserted
+ * @return {text} failure reason
  */
 export function inputSelectorValue(selector, value) {
-    const inputSelector = selector;
-    if (checkIfElementExists(inputSelector)) {
-        $(inputSelector).setValue(value);
+    if (!checkIfElementExists(selector)) {
+        return 'selector not exist';
     }
+    return $(selector).setValue(value);
 }
 
 /**
@@ -71,8 +73,8 @@ export function checkTitle(title) {
  */
 export function checkSelectorContent(selector, content) {
     const text = $(`${selector}'='+${content}`);
-    if (checkIfElementExists(selector)) {
-        return text.getText() === content && text.getTagName() === selector;
+    if (!checkIfElementExists(selector)) {
+        return 'selector not exist';
     }
-    return false;
+    return text.getText() === content && text.getTagName() === selector;
 }
