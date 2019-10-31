@@ -1,10 +1,12 @@
 import { Given, When, Then } from 'cucumber';
-import {goToUrl, clickSelector, inputSelectorValue, checkUrl, checkTitle} from '../support/common';
+import {
+    goToUrl, clickSelector, inputSelectorValue, checkUrl, checkTitle
+} from '../support/common';
 
 Given(
     /^I am on the Google homepage$/,
     () => {
-        goToUrl('https://www.google.com/')
+        goToUrl('https://www.google.com/');
     }
 );
 
