@@ -21,7 +21,7 @@ export function goToUrl(url) {
  */
 export function clickSelector(selector) {
     if (checkIfElementExists(selector)) {
-        return 'selector not exist';
+        return `Expected element "${selector}" to exist`;
     }
     return $(selector).click();
 }
@@ -34,7 +34,7 @@ export function clickSelector(selector) {
  */
 export function inputSelectorValue(selector, value) {
     if (!checkIfElementExists(selector)) {
-        return 'selector not exist';
+        return `Expected element "${selector}" to exist`;
     }
     return $(selector).setValue(value);
 }
@@ -74,7 +74,7 @@ export function checkTitle(title) {
 export function checkSelectorContent(selector, content) {
     const text = $(`${selector}'='+${content}`);
     if (!checkIfElementExists(selector)) {
-        return 'selector not exist';
+        return `Expected element "${selector}" to exist`;
     }
     return text.getText() === content && text.getTagName() === selector;
 }
