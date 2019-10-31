@@ -15,8 +15,7 @@ When(
     /^I search for "([^"]*)?"$/,
     (value) => {
         inputSelectorValue('#searchform input[type=text]', value);
-        sendKeys('\uE00C'); // press esc - remove possible find-as-you-type box
-        clickSelector('#searchform input[type=submit]:first-of-type');
+        sendKeys('\uE007'); // press enter to submit search
     }
 );
 
