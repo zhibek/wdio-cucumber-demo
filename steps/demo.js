@@ -1,6 +1,7 @@
 import { Given, When, Then } from 'cucumber';
 import {
-    goToUrl, clickSelector, inputSelectorValue, checkUrl, checkTitle, checkSelectorContent
+    goToUrl, clickSelector, inputSelectorValue, checkUrl, checkTitle,
+    checkSelectorContent
 } from '../support/common';
 
 Given(
