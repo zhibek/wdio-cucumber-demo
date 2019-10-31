@@ -54,3 +54,4 @@ rules:
     - 'error'
     - requireReturn: false
       matchDescription: '.+'
+  no-console: 'off'
