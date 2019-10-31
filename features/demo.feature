@@ -8,3 +8,4 @@ Feature: Demo
     And I click on the first search result
     Then the URL is "https://en.wikipedia.org/wiki/Demo"
     And the page title is "Demo"
+    And the heading is "Demo"

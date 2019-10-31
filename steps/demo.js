@@ -1,6 +1,6 @@
 import { Given, When, Then } from 'cucumber';
 import {
-    goToUrl, clickSelector, inputSelectorValue, checkUrl, checkTitle
+    goToUrl, clickSelector, inputSelectorValue, checkUrl, checkTitle, checkSelectorContent
 } from '../support/common';
 
 Given(
@@ -37,5 +37,12 @@ Then(
     /^the page title is "([^"]*)?"$/,
     (expectedTitle) => {
         checkTitle(expectedTitle);
+    }
+);
+
+Then(
+    /^the heading is "([^"]*)?"$/,
+    (expectedText) => {
+        checkSelectorContent('h1#firstHeading', expectedText);
     }
 );
