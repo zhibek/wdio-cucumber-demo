@@ -21,13 +21,12 @@ export function goToUrl(url) {
  * Click on element
  *
  * @param {string} selector to be clicked
- * @return {string} Failure reason
  */
 export function clickSelector(selector) {
     if (checkIfElementExists(selector)) {
-        return `Expected element "${selector}" to exist`;
+        throw new Error(`Expected element "${selector}" to exist`);
     }
-    return $(selector).click();
+    $(selector).click();
 }
 
 /**
@@ -35,13 +34,21 @@ export function clickSelector(selector) {
  *
  * @param {string} selector to be filled
  * @param {string} value to be inserted
- * @return {string} Failure reason
  */
 export function inputSelectorValue(selector, value) {
     if (!checkIfElementExists(selector)) {
-        return `Expected element "${selector}" to exist`;
+        throw new Error(`Expected element "${selector}" to exist`);
     }
-    return $(selector).setValue(value);
+    $(selector).setValue(value);
+}
+
+/**
+ * Send keys
+ *
+ * @param {string} value to be typed
+ */
+export function sendKeys(value) {
+    browser.keys(value);
 }
 
 /**
@@ -82,7 +89,7 @@ export function checkTitle(title) {
 export function checkSelectorContent(selector, content) {
     const text = $(`${selector}'='+${content}`);
     if (!checkIfElementExists(selector)) {
-        return `Expected element "${selector}" to exist`;
+        throw new Error(`Expected element "${selector}" to exist`);
     }
     return text.getText() === content && text.getTagName() === selector;
 }
