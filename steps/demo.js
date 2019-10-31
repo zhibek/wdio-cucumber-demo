@@ -1,22 +1,20 @@
 import { Given, When, Then } from 'cucumber';
-
+import {
+    goToUrl, clickSelector, inputSelectorValue, checkUrl, checkTitle
+} from '../support/common';
 
 Given(
     /^I am on the Google homepage$/,
     () => {
-        const url = 'https://www.google.com/';
-        browser.url(url);
+        goToUrl('https://www.google.com/');
     }
 );
 
 When(
     /^I search for "([^"]*)?"$/,
     (value) => {
-        const inputSelector = '#searchform input[type=text]';
-        $(inputSelector).setValue(value);
-
-        const submitSelector = '#searchform input[type=submit]:first-of-type';
-        $(submitSelector).click();
+        inputSelectorValue('#searchform input[type=text]', value);
+        clickSelector('#searchform input[type=submit]:first-of-type');
     }
 );
 
@@ -24,30 +22,20 @@ When(
     /^I click on the first search result$/,
     () => {
         const resultSelector = '#search a:first-of-type';
-        $(resultSelector).click();
+        clickSelector(resultSelector);
     }
 );
 
 Then(
     /^the URL is "([^"]*)?"$/,
     (expectedUrl) => {
-        const currentUrl = browser.getUrl();
-        expect(currentUrl).to
-            .contain(
-                expectedUrl,
-                `Expected URL "${currentUrl}" to contain "${expectedUrl}"`
-            );
+        checkUrl(expectedUrl);
     }
 );
 
 Then(
     /^the page title is "([^"]*)?"$/,
     (expectedTitle) => {
-        const currentTitle = browser.getTitle();
-        expect(currentTitle).to
-            .contain(
-                expectedTitle,
-                `Expected title "${currentTitle}" to contain "${expectedTitle}"`
-            );
+        checkTitle(expectedTitle);
     }
 );
