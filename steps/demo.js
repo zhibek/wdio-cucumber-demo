@@ -1,6 +1,7 @@
 import { Given, When, Then } from 'cucumber';
 import {
-    goToUrl, clickSelector, inputSelectorValue, checkUrl, checkTitle
+    goToUrl, clickSelector, inputSelectorValue, sendKeys, checkUrl, checkTitle,
+    checkSelectorContent
 } from '../support/common';
 
 Given(
@@ -14,7 +15,7 @@ When(
     /^I search for "([^"]*)?"$/,
     (value) => {
         inputSelectorValue('#searchform input[type=text]', value);
-        clickSelector('#searchform input[type=submit]:first-of-type');
+        sendKeys('\uE007'); // press enter to submit search
     }
 );
 
@@ -37,5 +38,12 @@ Then(
     /^the page title is "([^"]*)?"$/,
     (expectedTitle) => {
         checkTitle(expectedTitle);
+    }
+);
+
+Then(
+    /^the heading is "([^"]*)?"$/,
+    (expectedText) => {
+        checkSelectorContent('h1#firstHeading', expectedText);
     }
 );

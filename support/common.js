@@ -1,46 +1,59 @@
 /**
- * check if element exist
+ * Check if element exists
+ *
  * @param {string} selector to be checked
- * @returns {boolean} true if exist and false if not exist
+ * @returns {boolean} True if element exists or false if element doesn't exist
  */
 export function checkIfElementExists(selector) {
-    const elem = $(selector);
-    return elem.isExisting();
+    return $(selector).isExisting();
 }
+
 /**
- * go to url
+ * Go to URL
+ *
  * @param {string} url to go
  */
 export function goToUrl(url) {
     browser.url(url);
 }
+
 /**
- * click on element
+ * Click on element
+ *
  * @param {string} selector to be clicked
- * @return {text} failure reason
  */
 export function clickSelector(selector) {
-    if (checkIfElementExists(selector)) {
-        return 'selector not exist';
+    if (!checkIfElementExists(selector)) {
+        throw new Error(`Expected element "${selector}" to exist`);
     }
-    return $(selector).click();
+    $(selector).click();
 }
 
 /**
- * set value inside element
+ * Set value inside input
+ *
  * @param {string} selector to be filled
  * @param {string} value to be inserted
- * @return {text} failure reason
  */
 export function inputSelectorValue(selector, value) {
     if (!checkIfElementExists(selector)) {
-        return 'selector not exist';
+        throw new Error(`Expected element "${selector}" to exist`);
     }
-    return $(selector).setValue(value);
+    $(selector).setValue(value);
 }
 
 /**
- * assert url
+ * Send keys
+ *
+ * @param {string} value to be typed
+ */
+export function sendKeys(value) {
+    browser.keys(value);
+}
+
+/**
+ * Assert URL
+ *
  * @param {string} url to be asserted
  */
 export function checkUrl(url) {
@@ -53,7 +66,8 @@ export function checkUrl(url) {
 }
 
 /**
- * check webpage title
+ * Check webpage title
+ *
  * @param {string} title of webpage
  */
 export function checkTitle(title) {
@@ -66,15 +80,16 @@ export function checkTitle(title) {
 }
 
 /**
- * assert content exist
+ * Assert content exists
+ *
  * @param {string} selector of content
  * @param {string} content text
- * @return {boolean} return true if text exist otherwise return false
+ * @return {boolean} Return true if text exist otherwise return false
  */
 export function checkSelectorContent(selector, content) {
     const text = $(`${selector}'='+${content}`);
     if (!checkIfElementExists(selector)) {
-        return 'selector not exist';
+        throw new Error(`Expected element "${selector}" to exist`);
     }
     return text.getText() === content && text.getTagName() === selector;
 }
