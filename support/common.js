@@ -23,7 +23,7 @@ export function goToUrl(url) {
  * @param {string} selector to be clicked
  */
 export function clickSelector(selector) {
-    if (checkIfElementExists(selector)) {
+    if (!checkIfElementExists(selector)) {
         throw new Error(`Expected element "${selector}" to exist`);
     }
     $(selector).click();
