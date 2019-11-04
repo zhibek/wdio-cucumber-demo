@@ -1,5 +1,5 @@
 {
-  "name": "wdio-cucumber-demo",
+  "name": "regression-tests",
   "version": "1.0.0",
   "license": "UNLICENSED",
   "scripts": {

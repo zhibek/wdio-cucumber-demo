@@ -1,4 +1,4 @@
-# wdio-cucumber-demo
+# regression-tests
 
 ## Local Development
 
