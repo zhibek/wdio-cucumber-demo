@@ -7,7 +7,7 @@
  */
 export function checkIfElementExists(selector, seconds = 3) {
     return $(selector).waitForExist((1000 * seconds), false,
-        `Selector ${selector} not exist`);
+        `Element "${selector}" does not exist`);
 }
 
 /**
