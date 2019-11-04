@@ -89,12 +89,7 @@ export function checkUrl(url, seconds = 3) {
 export function checkTitle(title, seconds = 3) {
     browser.waitUntil( () => {
         const currentTitle = browser.getTitle();
-        expect(currentTitle).to
-            .contain(
-                title,
-                `Expected title "${currentTitle}" to contain "${title}"`
-            );
-        return true;
+        return currentTitle.includes(title);
     },(seconds * 1000));
 }
 
@@ -110,7 +105,6 @@ export function checkSelectorContent(selector, content, seconds = 3) {
             throw new Error(`Expected element "${selector}" to exist`);
         }
         const actualContent = $(selector).getText();
-        expect(actualContent).to.contain(content);
-        return true;
+        return actualContent.includes(content);
     },(seconds * 1000));
 }
