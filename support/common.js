@@ -86,7 +86,7 @@ export function checkUrl(url, seconds = 3) {
  *
  * @param {string} title of webpage
  */
-export function checkTitle(title) {
+export function checkTitle(title, seconds = 3) {
     browser.waitUntil( () => {
         const currentTitle = browser.getTitle();
         expect(currentTitle).to
@@ -95,7 +95,7 @@ export function checkTitle(title) {
                 `Expected title "${currentTitle}" to contain "${title}"`
             );
         return true;
-    },3000);
+    },(seconds * 1000));
 }
 
 /**
