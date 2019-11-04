@@ -12,7 +12,7 @@ config.capabilities[0]['goog:chromeOptions'].args = [
 config.reporters = [
     'spec',
     ['cucumberjs-json', {
-        jsonFolder: 'build/',
+        jsonFolder: 'build/cucumber',
     },
     ],
 ];
