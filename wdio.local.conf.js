@@ -1,7 +1,5 @@
-const { config } = require('./wdio.conf.js');
+const { config } = require('./wdio.BASE.conf.js');
 
-config.services = ['chromedriver'];
-config.dockerOptions = null;
 config.capabilities[0]['goog:chromeOptions'].args = [
     '--disable-infobars',
     '--window-size=1280,800',
@@ -9,5 +7,6 @@ config.capabilities[0]['goog:chromeOptions'].args = [
     '--disable-setuid-sandbox',
     '--disable-dev-shm-usage',
 ];
+config.services = ['chromedriver'];
 
 exports.config = config;

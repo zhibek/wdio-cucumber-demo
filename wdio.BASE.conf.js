@@ -8,17 +8,7 @@ exports.config = {
     capabilities: [{
         maxInstances: 1,
         browserName: 'chrome',
-        'goog:chromeOptions': {
-            args: [
-                '--disable-infobars',
-                '--window-size=1280,800',
-                '--headless',
-                '--no-sandbox',
-                '--disable-gpu',
-                '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-            ],
-        },
+        'goog:chromeOptions': {} // see wdio.*.conf.js
     }],
     logLevel: 'warn',
     coloredLogs: true,
@@ -27,20 +17,7 @@ exports.config = {
     waitforTimeout: 10000,
     connectionRetryTimeout: 90000,
     connectionRetryCount: 3,
-    services: ['chromedriver', 'docker'],
-    dockerOptions: {
-        image: 'alpeware/chrome-headless-stable:ver-78.0.3904.87',
-        healthCheck: {
-            url: 'http://localhost:9222',
-            maxRetries: 3,
-            inspectInterval: 1000,
-            startDelay: 2000,
-        },
-        options: {
-            p: ['9222:9222'],
-            shmSize: '2g',
-        },
-    },
+    services: [], // see wdio.*.conf.js
     framework: 'cucumber',
     reporters: ['spec'],
     cucumberOpts: {
