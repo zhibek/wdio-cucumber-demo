@@ -75,9 +75,9 @@ export function sendKeys(value) {
  */
 export function checkUrl(url, seconds = 3) {
     browser.waitUntil(
-      () => browser.getUrl().includes(url),
-      (seconds * 1000),
-      `Expected URL "${browser.getUrl()}" to contain "${url}"`
+        () => browser.getUrl().includes(url),
+        (seconds * 1000),
+        `Expected URL "${browser.getUrl()}" to contain "${url}"`
     );
 }
 
