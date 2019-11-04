@@ -2,10 +2,12 @@
  * Check if element exists
  *
  * @param {string} selector to be checked
+ * @param {int} seconds to wait
  * @returns {boolean} True if element exists or false if element doesn't exist
  */
-export function checkIfElementExists(selector) {
-    return $(selector).isExisting();
+export function checkIfElementExists(selector, seconds = 3) {
+    return $(selector).waitForExist((1000 * seconds), false,
+        `Element "${selector}" does not exist`);
 }
 
 /**
@@ -85,14 +87,15 @@ export function checkUrl(url, seconds = 3) {
  * Check webpage title
  *
  * @param {string} title of webpage
+ * @param {int} seconds to wait
  */
-export function checkTitle(title) {
-    const currentTitle = browser.getTitle();
-    expect(currentTitle).to
-        .contain(
-            title,
-            `Expected title "${currentTitle}" to contain "${title}"`
-        );
+export function checkTitle(title, seconds = 3) {
+    browser.waitUntil(() => {
+        const currentTitle = browser.getTitle();
+        return currentTitle.includes(title);
+    },
+    (seconds * 1000),
+    `Expected title ${browser.getTitle()} to contain ${title}`);
 }
 
 /**
@@ -100,11 +103,16 @@ export function checkTitle(title) {
  *
  * @param {string} selector of content
  * @param {string} content text
+ * @param {int} seconds to wait
  */
-export function checkSelectorContent(selector, content) {
-    if (!checkIfElementExists(selector)) {
-        throw new Error(`Expected element "${selector}" to exist`);
-    }
-    const actualContent = $(selector).getText();
-    expect(actualContent).to.contain(content);
+export function checkSelectorContent(selector, content, seconds = 3) {
+    browser.waitUntil(() => {
+        if (!checkIfElementExists(selector)) {
+            throw new Error(`Expected element "${selector}" to exist`);
+        }
+        const actualContent = $(selector).getText();
+        return actualContent.includes(content);
+    },
+    (seconds * 1000),
+    `Expected web page to contain ${content}`);
 }
