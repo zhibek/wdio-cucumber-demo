@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "wdio",
+    "test:ci": "wdio run wdio.ci.conf.js",
     "test:local": "wdio run wdio.local.conf.js"
   },
   "devDependencies": {
