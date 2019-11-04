@@ -19,7 +19,7 @@ jobs:
           key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/.cache
-      - run: sleep 5 && nc -vz localhost 9515 # Check chrome docker has started
+      - run: sleep 5 && nc -vz localhost 9222 # Check chrome docker has started
       - run: yarn lint
       - run: yarn test:ci
       - store_artifacts:
