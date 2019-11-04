@@ -14,7 +14,7 @@ export function checkIfElementExists(selector) {
  * @param {string} url to go
  */
 export function goToUrl(url) {
-    console.log(`INFO: Change URL to "${url}"`);
+    console.log(`ACTION: Change URL to "${url}"`);
     browser.url(url);
 }
 
@@ -36,7 +36,7 @@ export function wait(seconds = 3) {
  * @param {string} selector to be clicked
  */
 export function clickSelector(selector) {
-    console.log(`INFO: Click "${selector}"`);
+    console.log(`ACTION: Click "${selector}"`);
     if (!checkIfElementExists(selector)) {
         throw new Error(`Expected element "${selector}" to exist`);
     }
@@ -50,7 +50,7 @@ export function clickSelector(selector) {
  * @param {string} value to be inserted
  */
 export function inputSelectorValue(selector, value) {
-    console.log(`INFO: Input "${selector}" with "${value}"`);
+    console.log(`ACTION: Input "${selector}" with "${value}"`);
     if (!checkIfElementExists(selector)) {
         throw new Error(`Expected element "${selector}" to exist`);
     }
@@ -63,7 +63,7 @@ export function inputSelectorValue(selector, value) {
  * @param {string} value to be typed
  */
 export function sendKeys(value) {
-    console.log(`INFO: Send keys "${value}"`);
+    console.log(`ACTION: Send keys "${value}"`);
     browser.keys(value);
 }
 
@@ -71,14 +71,14 @@ export function sendKeys(value) {
  * Assert URL
  *
  * @param {string} url to be asserted
+ * @param {int} seconds to wait
  */
-export function checkUrl(url) {
-    const currentUrl = browser.getUrl();
-    expect(currentUrl).to
-        .contain(
-            url,
-            `Expected URL "${currentUrl}" to contain "${url}"`
-        );
+export function checkUrl(url, seconds = 3) {
+    browser.waitUntil(
+      () => browser.getUrl().includes(url),
+      (seconds * 1000),
+      `Expected URL "${browser.getUrl()}" to contain "${url}"`
+    );
 }
 
 /**
@@ -100,12 +100,11 @@ export function checkTitle(title) {
  *
  * @param {string} selector of content
  * @param {string} content text
- * @return {boolean} Return true if text exist otherwise return false
  */
 export function checkSelectorContent(selector, content) {
-    const text = $(`${selector}'='+${content}`);
     if (!checkIfElementExists(selector)) {
         throw new Error(`Expected element "${selector}" to exist`);
     }
-    return text.getText() === content && text.getTagName() === selector;
+    const actualContent = $(selector).getText();
+    expect(actualContent).to.contain(content);
 }
