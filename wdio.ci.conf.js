@@ -12,7 +12,10 @@ config.capabilities[0]['goog:chromeOptions'].args = [
 config.reporters = [
     'spec',
     ['junit', {
-        outputDir: './build/wdio/',
+        outputDir: './build/wdio',
+        outputFileFormat(options) {
+            return `results-${options.cid}.${options.capabilities}.xml`;
+        },
     }],
 ];
 
