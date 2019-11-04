@@ -24,7 +24,7 @@
     "eslint-plugin-wdio": "^5.13.2",
     "wdio-docker-service": "^2.1.4"
   },
-  "optionalDependencies": {
+  "devDependencies": {
     "chromedriver": "78.0.1",
     "wdio-chromedriver-service": "^5.0.2"
   }
