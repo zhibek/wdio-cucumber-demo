@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: circleci/node
       - image: blueimp/chromedriver
-        init: true
+        init: true # required: https://github.com/blueimp/chromedriver/issues/5
     working_directory: ~/app
     steps:
       - checkout
@@ -20,7 +20,7 @@ jobs:
           key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/.cache
-      - run: sleep 5 && nc -vz localhost 4444 # Check chrome docker has started
+      - run: nc -vz localhost 4444 # Check chromedriver/chrome has started
       - run: yarn lint
       - run: yarn test:ci
       - store_artifacts:
