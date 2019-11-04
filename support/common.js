@@ -104,10 +104,13 @@ export function checkTitle(title, seconds = 3) {
  * @param {string} selector of content
  * @param {string} content text
  */
-export function checkSelectorContent(selector, content) {
-    if (!checkIfElementExists(selector)) {
-        throw new Error(`Expected element "${selector}" to exist`);
-    }
-    const actualContent = $(selector).getText();
-    expect(actualContent).to.contain(content);
+export function checkSelectorContent(selector, content, seconds = 3) {
+    browser.waitUntil( () => {
+        if (!checkIfElementExists(selector)) {
+            throw new Error(`Expected element "${selector}" to exist`);
+        }
+        const actualContent = $(selector).getText();
+        expect(actualContent).to.contain(content);
+        return true;
+    },(seconds * 1000));
 }
