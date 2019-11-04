@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node
+      - image: circleci/node:jessie-browsers # Contains shared libraries we need
       - image: alpeware/chrome-headless-stable:ver-78.0.3904.87
     working_directory: ~/app
     steps:
