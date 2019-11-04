@@ -10,11 +10,11 @@ config.capabilities[0]['goog:chromeOptions'].args = [
     '--disable-dev-shm-usage',
 ];
 config.reporters = [
-  'spec',
-  [ 'cucumberjs-json', {
-          jsonFolder: 'build/',
-      },
-  ],
+    'spec',
+    ['cucumberjs-json', {
+        jsonFolder: 'build/',
+    },
+    ],
 ];
 
 exports.config = config;
