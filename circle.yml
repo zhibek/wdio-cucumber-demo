@@ -6,7 +6,7 @@ jobs:
       - image: alpeware/chrome-headless-stable:ver-78.0.3904.87
     working_directory: ~/app
     steps:
-      - sudo apt install libnss3
+      - run: sudo apt install libnss3
       - checkout
       - restore_cache:
           keys:
