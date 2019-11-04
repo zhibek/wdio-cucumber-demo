@@ -8,7 +8,7 @@ exports.config = {
     capabilities: [{
         maxInstances: 1,
         browserName: 'chrome',
-        'goog:chromeOptions': {} // see wdio.*.conf.js
+        'goog:chromeOptions': {}, // see wdio.*.conf.js
     }],
     logLevel: 'warn',
     coloredLogs: true,
