@@ -87,12 +87,15 @@ export function checkUrl(url, seconds = 3) {
  * @param {string} title of webpage
  */
 export function checkTitle(title) {
-    const currentTitle = browser.getTitle();
-    expect(currentTitle).to
-        .contain(
-            title,
-            `Expected title "${currentTitle}" to contain "${title}"`
-        );
+    browser.waitUntil( () => {
+        const currentTitle = browser.getTitle();
+        expect(currentTitle).to
+            .contain(
+                title,
+                `Expected title "${currentTitle}" to contain "${title}"`
+            );
+        return true;
+    },3000);
 }
 
 /**
