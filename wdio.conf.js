@@ -27,7 +27,20 @@ exports.config = {
     waitforTimeout: 10000,
     connectionRetryTimeout: 90000,
     connectionRetryCount: 3,
-    services: ['chromedriver'],
+    services: ['chromedriver', 'docker'],
+    dockerOptions: {
+        image: 'alpeware/chrome-headless-stable:ver-78.0.3904.87',
+        healthCheck: {
+            url: 'http://localhost:9222',
+            maxRetries: 3,
+            inspectInterval: 1000,
+            startDelay: 2000,
+        },
+        options: {
+            p: ['9222:9222'],
+            shmSize: '2g',
+        },
+    },
     framework: 'cucumber',
     reporters: ['spec'],
     cucumberOpts: {

@@ -2,12 +2,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:jessie-browsers
+      - image: circleci/node
     working_directory: ~/app
     steps:
-      - run:
-          name: Check Chrome version
-          command: google-chrome --version
       - checkout
       - restore_cache:
           keys:
