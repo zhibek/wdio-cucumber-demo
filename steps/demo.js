@@ -23,6 +23,7 @@ When(
     /^I click on the first search result$/,
     () => {
         const resultSelector = '#search a:first-of-type';
+        checkSelectorContent(resultSelector, 'Demo - Wikipedia');
         clickSelector(resultSelector);
     }
 );
