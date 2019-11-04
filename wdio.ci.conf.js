@@ -11,10 +11,9 @@ config.capabilities[0]['goog:chromeOptions'].args = [
 ];
 config.reporters = [
     'spec',
-    ['cucumberjs-json', {
-        jsonFolder: 'build/cucumber',
-    },
-    ],
+    ['junit', {
+        outputDir: './build/wdio/',
+    }],
 ];
 
 exports.config = config;
