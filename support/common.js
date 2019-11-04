@@ -2,6 +2,7 @@
  * Check if element exists
  *
  * @param {string} selector to be checked
+ * @param {int} seconds to wait
  * @returns {boolean} True if element exists or false if element doesn't exist
  */
 export function checkIfElementExists(selector, seconds = 3) {
@@ -85,12 +86,15 @@ export function checkUrl(url, seconds = 3) {
  * Check webpage title
  *
  * @param {string} title of webpage
+ * @param {int} seconds to wait
  */
 export function checkTitle(title, seconds = 3) {
-    browser.waitUntil( () => {
+    browser.waitUntil(() => {
         const currentTitle = browser.getTitle();
         return currentTitle.includes(title);
-    },(seconds * 1000));
+    },
+    (seconds * 1000),
+    `Expected title ${browser.getTitle()} to contain ${title}`);
 }
 
 /**
@@ -98,13 +102,16 @@ export function checkTitle(title, seconds = 3) {
  *
  * @param {string} selector of content
  * @param {string} content text
+ * @param {int} seconds to wait
  */
 export function checkSelectorContent(selector, content, seconds = 3) {
-    browser.waitUntil( () => {
+    browser.waitUntil(() => {
         if (!checkIfElementExists(selector)) {
             throw new Error(`Expected element "${selector}" to exist`);
         }
         const actualContent = $(selector).getText();
         return actualContent.includes(content);
-    },(seconds * 1000));
+    },
+    (seconds * 1000),
+    `Expected web page to contain ${content}`);
 }
