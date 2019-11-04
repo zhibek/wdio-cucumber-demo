@@ -4,8 +4,8 @@
  * @param {string} selector to be checked
  * @returns {boolean} True if element exists or false if element doesn't exist
  */
-export function checkIfElementExists(selector) {
-    return $(selector).waitForExist();
+export function checkIfElementExists(selector, seconds = 3) {
+    return $(selector).waitForExist((1000 * seconds));
 }
 
 /**
