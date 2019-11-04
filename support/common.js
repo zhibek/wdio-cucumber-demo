@@ -14,7 +14,20 @@ export function checkIfElementExists(selector) {
  * @param {string} url to go
  */
 export function goToUrl(url) {
+    console.log(`INFO: Change URL to "${url}"`);
     browser.url(url);
+}
+
+/**
+ * Wait x seconds
+ *
+ * @param {int} seconds to wait
+ */
+export function wait(seconds = 3) {
+    console.warn(
+        'WARNING: Fixed sleep being used - avoid unless absolutely necessary!'
+    );
+    browser.pause(seconds * 1000);
 }
 
 /**
@@ -23,6 +36,7 @@ export function goToUrl(url) {
  * @param {string} selector to be clicked
  */
 export function clickSelector(selector) {
+    console.log(`INFO: Click "${selector}"`);
     if (!checkIfElementExists(selector)) {
         throw new Error(`Expected element "${selector}" to exist`);
     }
@@ -36,6 +50,7 @@ export function clickSelector(selector) {
  * @param {string} value to be inserted
  */
 export function inputSelectorValue(selector, value) {
+    console.log(`INFO: Input "${selector}" with "${value}"`);
     if (!checkIfElementExists(selector)) {
         throw new Error(`Expected element "${selector}" to exist`);
     }
@@ -48,6 +63,7 @@ export function inputSelectorValue(selector, value) {
  * @param {string} value to be typed
  */
 export function sendKeys(value) {
+    console.log(`INFO: Send keys "${value}"`);
     browser.keys(value);
 }
 
