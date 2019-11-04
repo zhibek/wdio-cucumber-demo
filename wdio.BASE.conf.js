@@ -8,17 +8,7 @@ exports.config = {
     capabilities: [{
         maxInstances: 1,
         browserName: 'chrome',
-        'goog:chromeOptions': {
-            args: [
-                '--disable-infobars',
-                '--window-size=1280,800',
-                '--headless',
-                '--no-sandbox',
-                '--disable-gpu',
-                '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-            ],
-        },
+        'goog:chromeOptions': {}, // see wdio.*.conf.js
     }],
     logLevel: 'warn',
     coloredLogs: true,
@@ -27,7 +17,7 @@ exports.config = {
     waitforTimeout: 10000,
     connectionRetryTimeout: 90000,
     connectionRetryCount: 3,
-    services: ['chromedriver'],
+    services: [], // see wdio.*.conf.js
     framework: 'cucumber',
     reporters: ['spec'],
     cucumberOpts: {

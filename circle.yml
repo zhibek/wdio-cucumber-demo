@@ -2,12 +2,11 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:jessie-browsers
+      - image: circleci/node
+      - image: blueimp/chromedriver
+        init: true # required: https://github.com/blueimp/chromedriver/issues/5
     working_directory: ~/app
     steps:
-      - run:
-          name: Check Chrome version
-          command: google-chrome --version
       - checkout
       - restore_cache:
           keys:
@@ -16,12 +15,13 @@ jobs:
             - v1-deps
       - run:
           name: Install Dependencies
-          command: yarn install --ignore-engines --frozen-lockfile
+          command: yarn install --ignore-engines --frozen-lockfile --prod
       - save_cache:
           key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/.cache
+      - run: nc -vz localhost 4444 # Check chromedriver/chrome has started
       - run: yarn lint
-      - run: yarn test
+      - run: yarn test:ci
       - store_artifacts:
           path: ~/app/build

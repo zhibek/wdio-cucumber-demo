@@ -1,6 +1,6 @@
 Feature: Demo
 
-  I want to demo cypress cucumber style tests
+  I want to demo WDIO cucumber style tests
 
   Scenario: Search for demo
     Given I am on the Google homepage
