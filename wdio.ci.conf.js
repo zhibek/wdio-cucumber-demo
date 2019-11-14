@@ -9,5 +9,14 @@ config.capabilities[0]['goog:chromeOptions'].args = [
     '--disable-setuid-sandbox',
     '--disable-dev-shm-usage',
 ];
+config.reporters = [
+    'spec',
+    ['junit', {
+        outputDir: './build/wdio',
+        outputFileFormat(options) {
+            return `results-${options.cid}.${options.capabilities}.xml`;
+        },
+    }],
+];
 
 exports.config = config;

@@ -1,3 +1,5 @@
+require('dotenv').config(); // load process.env from ".env" file for local
+
 exports.config = {
     runner: 'local',
     path: '/',
