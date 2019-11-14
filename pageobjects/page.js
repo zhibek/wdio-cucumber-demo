@@ -1,5 +1,12 @@
+/**
+ * base page object
+ */
 export default class Page {
-    open (path) {
-        browser.url(path)
+    /**
+     * redirect to url
+     * @param {path} path url
+     */
+    static open(path) {
+        browser.url(path);
     }
 }
