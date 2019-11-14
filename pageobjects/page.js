@@ -1,3 +1,5 @@
+import { goToUrl } from '../support/common';
+
 /**
  * base page object
  */
@@ -7,6 +9,6 @@ export default class Page {
      * @param {path} path url
      */
     static open(path) {
-        browser.url(path);
+        goToUrl(path);
     }
 }

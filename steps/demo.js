@@ -1,21 +1,21 @@
 import { Given, When, Then } from 'cucumber';
 import {
-    goToUrl, clickSelector, inputSelectorValue, sendKeys, checkUrl, checkTitle,
+    clickSelector, checkUrl, checkTitle,
     checkSelectorContent
 } from '../support/common';
+import GoogleSearch from '../pageobjects/googleSearch.page';
 
 Given(
     /^I am on the Google homepage$/,
     () => {
-        goToUrl('https://www.google.com/');
+        GoogleSearch.open();
     }
 );
 
 When(
     /^I search for "([^"]*)?"$/,
     (value) => {
-        inputSelectorValue('#searchform input[type=text]', value);
-        sendKeys('\uE007'); // press enter to submit search
+        GoogleSearch.search(value);
     }
 );
 
