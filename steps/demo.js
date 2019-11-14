@@ -1,10 +1,7 @@
 import { Given, When, Then } from 'cucumber';
-import {
-    checkUrl, checkTitle,
-    checkSelectorContent
-} from '../support/common';
 import GoogleSearch from '../pageobjects/googleSearch.page';
 import GoogleSearchResult from '../pageobjects/googleSreachResult.page';
+import WikipediaArticle from '../pageobjects/wikipediaArticle.page';
 
 Given(
     /^I am on the Google homepage$/,
@@ -30,20 +27,20 @@ When(
 Then(
     /^the URL is "([^"]*)?"$/,
     (expectedUrl) => {
-        checkUrl(expectedUrl);
+        WikipediaArticle.checkUrl(expectedUrl);
     }
 );
 
 Then(
     /^the page title is "([^"]*)?"$/,
     (expectedTitle) => {
-        checkTitle(expectedTitle);
+        WikipediaArticle.checkTitle(expectedTitle);
     }
 );
 
 Then(
     /^the heading is "([^"]*)?"$/,
     (expectedText) => {
-        checkSelectorContent('h1#firstHeading', expectedText);
+        WikipediaArticle.checkHeading(expectedText);
     }
 );
