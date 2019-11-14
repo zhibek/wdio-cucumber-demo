@@ -1,50 +1,46 @@
 import { Given, When, Then } from 'cucumber';
-import {
-    goToUrl, clickSelector, inputSelectorValue, sendKeys, checkUrl, checkTitle,
-    checkSelectorContent
-} from '../support/common';
+import GoogleSearch from '../pageobjects/googleSearch.page';
+import GoogleSearchResult from '../pageobjects/googleSreachResult.page';
+import WikipediaArticle from '../pageobjects/wikipediaArticle.page';
 
 Given(
     /^I am on the Google homepage$/,
     () => {
-        goToUrl('https://www.google.com/');
+        GoogleSearch.open();
     }
 );
 
 When(
     /^I search for "([^"]*)?"$/,
     (value) => {
-        inputSelectorValue('#searchform input[type=text]', value);
-        sendKeys('\uE007'); // press enter to submit search
+        GoogleSearch.search(value);
     }
 );
 
 When(
     /^I click on the first search result$/,
     () => {
-        const resultSelector = '#search a:first-of-type';
-        checkSelectorContent(resultSelector, 'Demo - Wikipedia');
-        clickSelector(resultSelector);
+        GoogleSearchResult.clickOnFirstResult();
     }
 );
 
 Then(
     /^the URL is "([^"]*)?"$/,
     (expectedUrl) => {
-        checkUrl(expectedUrl);
+        WikipediaArticle.checkUrl(expectedUrl);
     }
 );
 
 Then(
     /^the page title is "([^"]*)?"$/,
     (expectedTitle) => {
-        checkTitle(expectedTitle);
+        WikipediaArticle.checkTitle(expectedTitle);
     }
 );
 
 Then(
     /^the heading is "([^"]*)?"$/,
     (expectedText) => {
-        checkSelectorContent('h1#firstHeading', expectedText);
+        WikipediaArticle.checkHeading(expectedText);
     }
 );
