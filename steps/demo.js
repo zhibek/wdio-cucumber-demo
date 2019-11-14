@@ -1,9 +1,10 @@
 import { Given, When, Then } from 'cucumber';
 import {
-    clickSelector, checkUrl, checkTitle,
+    checkUrl, checkTitle,
     checkSelectorContent
 } from '../support/common';
 import GoogleSearch from '../pageobjects/googleSearch.page';
+import GoogleSearchResult from '../pageobjects/googleSreachResult.page';
 
 Given(
     /^I am on the Google homepage$/,
@@ -22,9 +23,7 @@ When(
 When(
     /^I click on the first search result$/,
     () => {
-        const resultSelector = '#search a:first-of-type';
-        checkSelectorContent(resultSelector, 'Demo - Wikipedia');
-        clickSelector(resultSelector);
+        GoogleSearchResult.clickOnFirstResult();
     }
 );
 
